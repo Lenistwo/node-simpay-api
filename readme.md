@@ -17,10 +17,10 @@ response: APIResponse<CodeVerifyResponse> = sms.verifyCode(request);
 error: string[] = response.error; // List of errors, if request was successful list will be empty
 codeVerifyResponse: CodeVerifyResponse = response.respond;
 from: string = codeVerifyResponse.from; // Sender number
-number: number = codeVerifyResponse.number(); // Number where sms were sent
-status: string = codeVerifyResponse.status(); // Status received from api
-test: number = codeVerifyResponse.test(); // 1 if sms was test else 0
-value: number = codeVerifyResponse.value(); // Code Value
+number: number = codeVerifyResponse.number; // Number where sms were sent
+status: string = codeVerifyResponse.status; // Status received from api
+test: number = codeVerifyResponse.test; // 1 if sms was test else 0
+value: number = codeVerifyResponse.value; // Code Value
 ```
 
 ### Pobieranie listy usług
@@ -95,8 +95,8 @@ request.api = 'key'; // can be omitted  by passing value in constructor
 request.secret = 'secret';  // can be omitted  by passing value in constructor
 
 response: APIResponse<DbServicesListResponse> = directBilling.getServices(request);
-error: string[] = response.error(); // List of errors, if request was successful list will be empty
-respond: DbTransaction = response.respond();
+error: string[] = response.error; // List of errors, if request was successful list will be empty
+respond: DbTransaction = response.respond;
 ```
 
 ### Pobieranie maksymalnych kwot transakcji
