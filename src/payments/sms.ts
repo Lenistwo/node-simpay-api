@@ -12,6 +12,7 @@ export class Sms {
                 private  secret: string,
                 private serviceId: string = '') {}
 
+    // https://docs.simpay.pl/#weryfikacja-kodu
     verifyCode(request: CodeVerifyRequest): ApiResponse<CodeVerifyResponse> {
         if (!request.key) request.key = this.apiKey;
         if (!request.secret) request.secret = this.secret;
@@ -20,6 +21,7 @@ export class Sms {
         return null;
     }
 
+    // https://docs.simpay.pl/#pobieranie-listy-uslug
     getServiceList(request: ServiceListRequest): ApiResponse<SmsServiceResponse> {
         if (!request.key) request.key = this.apiKey;
         if (!request.secret) request.secret = this.secret;
