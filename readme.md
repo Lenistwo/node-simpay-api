@@ -54,7 +54,7 @@ ip: boolean = smsXml.getServersIp('ip'); // Check if passed ip is valid ip of si
 directBilling: DirectBilling = new DirectBilling();
 directBilling: DirectBilling = new DirectBilling('apiKey', 'secret', false, 1);
 
-DbGenerateRequest request = new DbGenerateRequest();
+request: DbGenerateRequest = new DbGenerateRequest();
 request.amount = 'amount';
 request.amount_gross = 'amount_gross';
 request.amount_required = 'amount_required';
@@ -75,7 +75,7 @@ dbGenerateResponse.status; // Status received from api
 directBilling: DirectBilling  = new DirectBilling();
 directBilling: DirectBilling  = new DirectBilling('apiKey', 'secret', false, 1);
 
-DbTransactionRequest request = new DbTransactionRequest();
+request: DbTransactionRequest = new DbTransactionRequest();
 request.id = 1;
 request.key = 'key'; // can be omitted  by passing value in constructor
 request.secret = 'secret';  // can be omitted  by passing value in constructor
