@@ -11,7 +11,6 @@ import {DbCommission} from "../model/db/db.commission";
 import {Hashing} from "../utils/hashing";
 import {HttpService} from "../utils/http.service";
 import {DbGenerateResponse} from "../model/db/response/db.generate.response";
-import {IpResponse} from "../model/generic/ip.response";
 
 export class DirectBilling extends HttpService {
     private static API_URL: string = "https://simpay.pl/db/api";
@@ -19,7 +18,6 @@ export class DirectBilling extends HttpService {
     private static SERVICES_LIST_URL: string = "https://simpay.pl/api/get_services_db";
     private static TRANSACTION_LIMITS_URL: string = "https://simpay.pl/api/db_hosts";
     private static SERVICE_COMMISSION_URL: string = "https://simpay.pl/api/db_hosts_commission";
-    private static GET_IP_URL: string = "https://simpay.pl/api/get_ip";
 
     constructor(private apiKey: string,
                 private secret: string,
@@ -74,11 +72,6 @@ export class DirectBilling extends HttpService {
         if (!request.service_id) request.service_id = this.serviceId;
 
         return super.sendJsonPost(DirectBilling.SERVICE_COMMISSION_URL, { params: request });
-    }
-
-    // https://docs.simpay.pl/#lista-ip-serwerow-simpay
-    async getServersIp(): Promise<string[]> {
-        return (await super.sendGet<ApiResponse<IpResponse>>(DirectBilling.GET_IP_URL)).respond.ips;
     }
 
     // https://docs.simpay.pl/#odbieranie-transakcji

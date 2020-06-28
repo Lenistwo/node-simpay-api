@@ -2,7 +2,6 @@ import {HttpService} from "../utils/http.service";
 import {Hashing} from "../utils/hashing";
 
 export class SmsXml extends HttpService {
-    private static GET_IP_URL: string = "https://simpay.pl/api/get_ip";
     private static charset: string = "ABCDEFGHIJKLMNPQRSTUVWXYZ123456789";
     private static params = [ "send_number", "sms_text", "sms_from", "sms_id", "sign" ];
     private static codes :any = {
