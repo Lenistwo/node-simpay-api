@@ -13,11 +13,11 @@ import {HttpService} from "../utils/http.service";
 import {DbGenerateResponse} from "../model/db/response/db.generate.response";
 
 export class DirectBilling extends HttpService {
-    private static API_URL: string = "https://simpay.pl/db/api";
-    private static TRANSACTION_STATUS_URL: string = "https://simpay.pl/api/db_status";
-    private static SERVICES_LIST_URL: string = "https://simpay.pl/api/get_services_db";
-    private static TRANSACTION_LIMITS_URL: string = "https://simpay.pl/api/db_hosts";
-    private static SERVICE_COMMISSION_URL: string = "https://simpay.pl/api/db_hosts_commission";
+    private static API_URL: string = 'https://simpay.pl/db/api';
+    private static TRANSACTION_STATUS_URL: string = 'https://simpay.pl/api/db_status';
+    private static SERVICES_LIST_URL: string = 'https://simpay.pl/api/get_services_db';
+    private static TRANSACTION_LIMITS_URL: string = 'https://simpay.pl/api/db_hosts';
+    private static SERVICE_COMMISSION_URL: string = 'https://simpay.pl/api/db_hosts_commission';
 
     constructor(private apiKey: string,
                 private secret: string,
@@ -35,7 +35,7 @@ export class DirectBilling extends HttpService {
         if (request.amount_gross) amount = request.amount_gross;
         if (request.amount_required) amount = request.amount_required;
 
-        request.sign = Hashing.sha256(this.serviceId + "" + amount + "" + request.control + "" + this.apiKey);
+        request.sign = Hashing.sha256(this.serviceId + amount + request.control + this.apiKey);
 
         return super.sendFormPost<ApiResponse<DbGenerateResponse>>(DirectBilling.API_URL, request);
     }
@@ -45,7 +45,7 @@ export class DirectBilling extends HttpService {
         if (!request.key) request.key = this.apiKey;
         if (!request.secret) request.secret = this.secret;
 
-        return super.sendJsonPost(DirectBilling.TRANSACTION_STATUS_URL, { params: request });
+        return super.sendJsonPost(DirectBilling.TRANSACTION_STATUS_URL, {params: request});
     }
 
     // https://docs.simpay.pl/#pobieranie-listy-uslug-dcb
@@ -53,7 +53,7 @@ export class DirectBilling extends HttpService {
         if (!request.key) request.key = this.apiKey;
         if (!request.secret) request.secret = this.secret;
 
-        return super.sendJsonPost(DirectBilling.SERVICES_LIST_URL, { params: request });
+        return super.sendJsonPost(DirectBilling.SERVICES_LIST_URL, {params: request});
     }
 
     // https://docs.simpay.pl/#pobieranie-maksymalnych-kwot-transakcji
@@ -62,7 +62,7 @@ export class DirectBilling extends HttpService {
         if (!request.secret) request.secret = this.secret;
         if (!request.service_id) request.service_id = this.serviceId;
 
-        return super.sendJsonPost(DirectBilling.TRANSACTION_LIMITS_URL, { params: request });
+        return super.sendJsonPost(DirectBilling.TRANSACTION_LIMITS_URL, {params: request});
     }
 
     // https://docs.simpay.pl/#pobieranie-prowizji-dla-uslugi
@@ -71,11 +71,11 @@ export class DirectBilling extends HttpService {
         if (!request.secret) request.secret = this.secret;
         if (!request.service_id) request.service_id = this.serviceId;
 
-        return super.sendJsonPost(DirectBilling.SERVICE_COMMISSION_URL, { params: request });
+        return super.sendJsonPost(DirectBilling.SERVICE_COMMISSION_URL, {params: request});
     }
 
     // https://docs.simpay.pl/#odbieranie-transakcji
     sign(id: number, status: string, valuenet: string, valuepartner: string, control: string): string {
-        return Hashing.sha256(`${id + status + valuenet + valuepartner + control + this.apiKey}`);
+        return Hashing.sha256(id + status + valuenet + valuepartner + control + this.apiKey);
     }
 }

@@ -3,7 +3,7 @@ import {ApiResponse} from "../model/generic/api.response";
 import {IpResponse} from "../model/generic/ip.response";
 
 export class HttpService {
-    private static GET_IP_URL: string = "https://simpay.pl/api/get_ip";
+    private static GET_IP_URL: string = 'https://simpay.pl/api/get_ip';
 
     sendJsonPost<T>(url :string, body :any) :Promise<T> {
         return got.post(url, {
