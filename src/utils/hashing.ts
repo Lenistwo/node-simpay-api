@@ -6,7 +6,7 @@ export class Hashing {
     }
 
     public static sha1(text :string) {
-        return Hashing.hash('sha256', text);
+        return Hashing.hash('sha1', text);
     }
 
     public static md5(text :string) {
