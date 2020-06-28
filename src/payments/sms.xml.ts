@@ -62,7 +62,7 @@ export class SmsXml extends HttpService {
         return Hashing.sha256(`${map['sms_id']}${map['sms_text']}${map['sms_from']}${map['send_number']}${map['send_time']}${this.apiKey}`);
     }
 
-    random(min: number, max: number) {
+    private random(min: number, max: number) {
         return Math.random() * (max - min) + min;
     }
 }

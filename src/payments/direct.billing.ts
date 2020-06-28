@@ -75,7 +75,7 @@ export class DirectBilling extends HttpService {
     }
 
     // https://docs.simpay.pl/#odbieranie-transakcji
-    sign(id: number, status: string, valuenet: string, valuepartner: string, control: string): string {
+    private sign(id: number, status: string, valuenet: string, valuepartner: string, control: string): string {
         return Hashing.sha256(id + status + valuenet + valuepartner + control + this.apiKey);
     }
 }
