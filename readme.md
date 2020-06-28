@@ -52,7 +52,7 @@ ip: boolean = smsXml.getServersIp('ip'); // Check if passed ip is valid ip of si
 ### Generowanie transakcji
 ```typescript
 directBilling: DirectBilling = new DirectBilling();
-directBilling: DirectBilling = new DirectBilling('apiKey', 'secret', false, 1);
+directBilling: DirectBilling = new DirectBilling('apiKey', 'secret', false, '1');
 
 request: DbGenerateRequest = new DbGenerateRequest();
 request.amount = 'amount';
@@ -62,7 +62,7 @@ request.complete = 'complete';
 request.failure = 'failure';
 request.provider = Operator.ORANGE; // orange, play, t-mobile, plus-gsm
 request.control = 'control';
-request.serviceId = 1;
+request.serviceId = '1';
 
 dbGenerateResponse: DbGenerateResponse = directBilling.generateTransaction(request);
 dbGenerateResponse.link; // Link
@@ -73,7 +73,7 @@ dbGenerateResponse.status; // Status received from api
 ### Pobieranie danych o transakcji
 ```typescript
 directBilling: DirectBilling  = new DirectBilling();
-directBilling: DirectBilling  = new DirectBilling('apiKey', 'secret', false, 1);
+directBilling: DirectBilling  = new DirectBilling('apiKey', 'secret', false, '1');
 
 request: DbTransactionRequest = new DbTransactionRequest();
 request.id = 1;
@@ -88,7 +88,7 @@ respond: DbTransaction = response.respond;
 ### Pobieranie listy usług DCB
 ```typescript
 directBilling: DirectBilling  = new DirectBilling();
-directBilling: DirectBilling  = new DirectBilling('apiKey', 'secret', false, 1);
+directBilling: DirectBilling  = new DirectBilling('apiKey', 'secret', false, '1');
 
 request: DbServicesListRequest = new DbServicesListRequest();
 request.api = 'key'; // can be omitted  by passing value in constructor
@@ -102,10 +102,10 @@ respond: DbTransaction = response.respond;
 ### Pobieranie maksymalnych kwot transakcji
 ```typescript
 directBilling: DirectBilling = new DirectBilling();
-directBilling: DirectBilling = new DirectBilling('apiKey', 'secret', false, 1);
+directBilling: DirectBilling = new DirectBilling('apiKey', 'secret', false, '1');
 
 request: DbTransactionLimitsRequest = new DbTransactionLimitsRequest();
-request.service_id = 1;
+request.service_id = '1';
 request.api = 'key'; // can be omitted  by passing value in constructor
 request.secret = 'secret';  // can be omitted  by passing value in constructor
 
@@ -115,10 +115,10 @@ response: APIResponse<LDbTransactionLimit[]> = directBilling.getTransactionLimit
 ### Pobieranie prowizji dla usługi
 ```typescript
 directBilling: DirectBilling = new DirectBilling();
-directBilling: DirectBilling = new DirectBilling('apiKey', 'secret', false, 1);
+directBilling: DirectBilling = new DirectBilling('apiKey', 'secret', false, '1');
 
 request: DbServiceCommissionRequest = new DbServiceCommissionRequest();
-request.service_id = 1;
+request.service_id = '1';
 request.api = 'key'; // can be omitted  by passing value in constructor
 request.secret = 'secret';  // can be omitted  by passing value in constructor
 
