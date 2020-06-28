@@ -3,14 +3,17 @@ import {ServiceListRequest} from "../model/sms/requests/service.list.request";
 import {ApiResponse} from "../model/generic/api.response";
 import {CodeVerifyResponse} from "../model/sms/response/code.verify.response";
 import {SmsServiceResponse} from "../model/sms/response/sms.service.response";
+import {HttpService} from "../utils/http.service";
 
-export class Sms {
+export class Sms extends HttpService {
     private VERIFY_CODE_URL: string = 'https://simpay.pl/api/status';
     private SERVICE_LIST_URL: string = 'https://simpay.pl/api/get_services';
 
     constructor(private apiKey: string,
                 private  secret: string,
-                private serviceId: string = '') {}
+                private serviceId: string = '') {
+        super();
+    }
 
     // https://docs.simpay.pl/#weryfikacja-kodu
     verifyCode(request: CodeVerifyRequest): ApiResponse<CodeVerifyResponse> {
@@ -28,5 +31,4 @@ export class Sms {
 
         return null;
     }
-
 }

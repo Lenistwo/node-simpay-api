@@ -1,14 +1,27 @@
 {
   "name": "node-simpay-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node wrapper for SimPay API",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "XTR3M3K",
+  "maintainers": [
+    {
+      "name": "Lenistwo",
+      "url": "https://github.com/Lenistwo"
+    },
+    {
+      "name": "XTR3M3K",
+      "url": "https://github.com/XTR3M3K"
+    }
+  ],
   "dependencies": {
-    "crypto": "^1.0.1",
+    "got": "^11.3.0"
+  },
+  "devDependencies": {
     "typescript": "^3.9.5"
   }
 }
