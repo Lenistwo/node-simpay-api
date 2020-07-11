@@ -16,19 +16,19 @@ export class Sms extends HttpService {
     }
 
     // https://docs.simpay.pl/#weryfikacja-kodu
-    async verifyCode(request: CodeVerifyRequest): Promise<ApiResponse<CodeVerifyResponse>> {
+    async verifyCode(request: Partial<CodeVerifyRequest>): Promise<ApiResponse<CodeVerifyResponse>> {
         if (!request.key) request.key = this.apiKey;
         if (!request.secret) request.secret = this.secret;
         if (!request.service_id) request.service_id = this.serviceId;
 
-        return super.sendFormPost<ApiResponse<CodeVerifyResponse>>(Sms.VERIFY_CODE_URL, request);
+        return super.sendJsonPost<ApiResponse<CodeVerifyResponse>>(Sms.VERIFY_CODE_URL,{ params: request });
     }
 
     // https://docs.simpay.pl/#pobieranie-listy-uslug
-    async getServiceList(request: ServiceListRequest): Promise<ApiResponse<SmsServiceResponse>> {
+    async getServiceList(request: Partial<ServiceListRequest>): Promise<ApiResponse<SmsServiceResponse>> {
         if (!request.key) request.key = this.apiKey;
         if (!request.secret) request.secret = this.secret;
 
-        return super.sendFormPost<ApiResponse<SmsServiceResponse>>(Sms.SERVICE_LIST_URL, request);
+        return super.sendJsonPost<ApiResponse<SmsServiceResponse>>(Sms.SERVICE_LIST_URL, { params: request });
     }
 }

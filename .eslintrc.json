@@ -1,6 +1,6 @@
 {
     "env": {
-        "browser": true,
+        "browser": false,
         "commonjs": true,
         "es2020": true
     },
@@ -16,5 +16,7 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "semi": ["error", "always"],
+        "quotes": ["error", "double"]
     }
 }
