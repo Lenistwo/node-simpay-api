@@ -1,4 +1,4 @@
-import {SmsService} from "./sms.service";
+import {SmsService} from "../sms.service";
 
 export interface SmsServiceResponse {
     status: string;

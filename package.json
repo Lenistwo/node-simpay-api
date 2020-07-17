@@ -2,7 +2,8 @@
   "name": "node-simpay-api",
   "version": "1.0.0",
   "description": "Node wrapper for SimPay API",
-  "main": "index.js",
+  "main": "dist/lib/index.js",
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "npm run lint && tsc",
     "lint": "tslint -p tsconfig.json",
