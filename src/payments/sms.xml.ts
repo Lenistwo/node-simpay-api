@@ -30,11 +30,11 @@ export class SmsXml extends HttpService {
 
     // https://docs.simpay.pl/#odbieranie-informacji-o-sms
     checkParameters(map: any): boolean {
-        for (let param of SmsXml.params) {
+        for (const param of SmsXml.params) {
             if (!map[param]) return false;
         }
 
-        return map['sign'] === this.sign(map);
+        return map.sign === this.sign(map);
     }
 
     // https://docs.simpay.pl/#odbieranie-informacji-o-sms
@@ -49,8 +49,8 @@ export class SmsXml extends HttpService {
     }
 
     // https://docs.simpay.pl/#odbieranie-informacji-o-sms
-    getSmsValue(number: string): number {
-        return SmsXml.codes[number];
+    getSmsValue(phone: string): number {
+        return SmsXml.codes[phone];
     }
 
     // https://docs.simpay.pl/#odbieranie-informacji-o-sms
@@ -59,7 +59,7 @@ export class SmsXml extends HttpService {
     }
 
     private sign(map: any) {
-        return Hashing.sha256(`${map['sms_id']}${map['sms_text']}${map['sms_from']}${map['send_number']}${map['send_time']}${this.apiKey}`);
+        return Hashing.sha256(`${map.sms_id}${map.sms_text}${map.sms_from}${map.send_number}${map.send_time}${this.apiKey}`);
     }
 
     private random(min: number, max: number) {
